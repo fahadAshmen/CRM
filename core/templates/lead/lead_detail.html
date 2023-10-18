@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}    
+    <h1>LEAD DETAIL</h1>
+
+  <div class="container">  
+    <strong><h4>Name</h4></strong>
+    <p>{{leads.name}}</p>
+
+    <!-- <strong><h4>Description</h4></strong> -->
+    {% if leads.description %}
+    <strong><h4>Description</h4></strong>
+    <p>{{leads.description}}</p>     
+    {% endif %}
+
+    <strong><h4>Email</h4></strong>
+    <p>{{leads.email}}</p>
+    <strong><h4>Priority</h4></strong>
+    <p>{{leads.get_priority_display}}</p>
+    <strong><h4>Status</h4></strong>
+    <p>{{leads.get_status_display}}</p>
+
+    <strong><h4>Created at</h4></strong>
+    <p>{{leads.created_at }}</p>   <!-- | date:"d-M-Y H:i"   -->
+    <strong><h4>Modified at</h4></strong>
+    <p>{{leads.modified_at}}</p>
+
+    <div>  <a class="btn btn-primary mb-5" href="{% url 'dashboard' %}"> Back </a>
+    <a class="btn btn-secondary mb-5" href="{% url 'lead-edit' leads.id %}"> Edit </a>
+
+    <a class="btn btn-danger mb-5" href="{% url 'lead-delete' leads.id %}"> Delete </a></div>
+
+  </div>
+
+  
+
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<div class="container-fluid d-flex justify-content-between mt-2">
+    <h6>Welcome {{ request.user.username }}</h6>    
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <a class="btn btn-danger" href="{% url 'add-lead'%}">Add Lead</a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn btn-danger" href="">Lead List</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead class="table-dark">
+        <tr>
+            <!-- <th scope="col">Id</th> -->
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Email</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Status</th>
+            <th scope="col">Details</th>
+            <th scope="col">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if leads %}
+        <tr>
+            {% for lead in leads %}
+            {% comment %} <th scope="row">1</th> {% endcomment %}
+            <!-- <td>{{lead.id}}</td> -->
+            <td>{{lead.name}}</td>
+            <td>{{lead.description}}</td>
+            <td>{{lead.email}}</td>
+            <td>{{lead.get_priority_display}}</td>
+            <td>{{lead.get_status_display}}</td>
+            <td><a class="btn btn-danger" href="{% url 'lead-detail' lead.id %}">Details</a></td> 
+
+            <td><a class="btn btn-secondary" href="{% url 'lead-edit' lead.id %}">Edit</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <td><p>Sorry no leads</p></td>
+        {% comment %} <div></div> {% endcomment %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+    
+        
+         
+        <div>
+            
+        </div>
+       
+    
+     
+
+
+{% endblock content %}
